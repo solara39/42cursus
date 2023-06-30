@@ -1,5 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "libft.h"
 
 int	ft_strlen(const char *str)
 {
@@ -79,15 +78,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	p[i] = '\0';
 	return p;
-}
-
-int	main()
-{
-	char const str1[256] = "12345678900987654321";
-	char const str2[256] = "12345678901110987654321";
-	char const str3[256] = "123456789009876543221";
-	char const set[256] = "123";
-	printf("%s\n",ft_strtrim(str1,set));
-	printf("%s\n",ft_strtrim(str2,set));
-	printf("%s\n",ft_strtrim(str3,set));
 }
