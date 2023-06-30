@@ -1,5 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "libft.h"
 
 size_t	ft_count_words(char const *s, char c)
 {
@@ -112,20 +111,4 @@ char	**ft_split(char const *s, char c)
 	}
 	p[i] = NULL;
 	return p;
-}
-
-int	main()
-{
-	const char str1[256] = "12345678900987654321";
-	const char str2[256] = "1234567890209827654321";
-	const char str3[256] = "12345678900987654321";
-	const char str4[256] = "12345678900987654321";
-	char s = '2';
-	char **p = ft_split(str2,s);
-	int	i = 0;
-	while (p[i] != NULL)
-	{
-		printf("%s\n",p[i]);
-		i++;
-	}
 }
