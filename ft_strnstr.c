@@ -1,52 +1,34 @@
-#include<stdio.h>
-#include<string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skondo <skondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/24 20:05:36 by skondo            #+#    #+#             */
+/*   Updated: 2023/07/07 05:00:54 by skondo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_strlen(const char *str)
-{
-	int i;
+#include"libft.h"
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return i;
-}
-
-char *ft_strnstr(const void *haystack, const void *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	size_t	j;
-	const char *p;
-	const char *q;
+	size_t	needle_len;
 
-	p = haystack;
-	q = needle;
-	if (ft_strlen(q) == 0)
-		return (char *)p;
-	if (ft_strlen(q) > len)
-		return NULL;
+	needle_len = ft_strlen(needle);
+	if (*needle == 0)
+		return ((char *)haystack);
+	if (len == 0)
+		return (NULL);
 	i = 0;
-	while (i < len - ft_strlen(q) && p[i] != '\0')
+	while (haystack[i] != '\0' && len >= needle_len)
 	{
-		j = 0;
-		while (p[j + i] == q[j] && q[j] != '\0')
-		{
-			j++;
-			if (j == ft_strlen(q))
-				return (char*)&p[i];
-		}
+		if (ft_strncmp(&haystack[i], needle, needle_len) == 0)
+			return ((char *)&haystack[i]);
 		i++;
+		len--;
 	}
-	return NULL;
-}
-
-int main()
-{
-	const char *str1 = "abcdefghij";
-	const char *str2 = "def";
-	printf("%s\n",ft_strnstr(str1, str2, 10));
-	printf("%s\n",strnstr(str1, str2, 10));
-	printf("%s\n",ft_strnstr(str1, str2, 5));
-	printf("%s\n",strnstr(str1, str2, 5));
-	printf("%s\n",ft_strnstr(str1, NULL, 0));
-	printf("%s\n",strnstr(str1, NULL, 0));
+	return (NULL);
 }
